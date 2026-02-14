@@ -5,7 +5,10 @@ import aiRoutes from "./routes/ai.routes.js";
 const app = express();
 
 app.use(cors({
-  origin: "http://localhost:3001",  
+  origin: [
+    "http://localhost:3001",
+    "https://review-buddy1.onrender.com"
+  ],
   methods: ["GET", "POST"],
   allowedHeaders: ["Content-Type"]
 }));
