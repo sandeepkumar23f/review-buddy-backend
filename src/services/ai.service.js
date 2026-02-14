@@ -9,8 +9,16 @@ const generateContent = async (prompt) => {
       {
         model: "deepseek/deepseek-chat",
         messages: [
-          { role: "user", content: prompt }
-        ]
+          {
+            role: "system",
+            content: "You are an expert code reviewer and senior developer."
+          },
+          {
+            role: "user",
+            content: prompt
+          }
+        ],
+        temperature: 0.3
       },
       {
         headers: {
@@ -23,7 +31,7 @@ const generateContent = async (prompt) => {
     return response.data.choices[0].message.content;
 
   } catch (error) {
-    console.log("OpenAI error:", error.response?.data || error.message);
+    console.log("OpenRouter error:", error.response?.data || error.message);
     throw new Error("AI error");
   }
 };
